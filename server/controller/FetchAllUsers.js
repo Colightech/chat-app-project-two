@@ -2,24 +2,24 @@
 const userModel = require("../models/UserModel")
 
 
-const checkEmail = async (req, res) => {
+const fetchUser = async (req, res) => {
 
     try {
-        const { userId, email } = req.body
 
-        const checkEmail = await userModel.findById(userId).select("-password")
-        if (!checkEmail) {
+        const user = await userModel.find({}).select("-password")
+        if (!user) {
             return res.status(400).json({
-                message : `User ${email} does not exist`
+                message : "No User Available",
+                error : true,
             })
         }
 
         return res.status(200).json({
-            message : "Email Checked Successfully",
+            message : "All User Fetched",
             success : true,
-            checkEmail,
+            user,
         })
-        
+
     } catch (error) {
         return res.status(500).json({
             message : error.message || error,
@@ -28,4 +28,4 @@ const checkEmail = async (req, res) => {
     }
 }
 
-module.exports = checkEmail
+module.exports = fetchUser
