@@ -7,7 +7,7 @@ const connectDB = require("./config/connectDB")
 
 
 app.get("/", (req, res) => {
-    res.send(`Express Server Running on Port: ${port}`)
+    return res.send(`Express Server Running on Port: ${port}`)
 })
 
 

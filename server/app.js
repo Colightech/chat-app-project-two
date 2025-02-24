@@ -2,12 +2,16 @@
 const express = require("express")
 const cors = require("cors")
 const router = require("./routes/router")
+const cookieParser = require("cookie-parser")
+
 
 
 const app = express()
 
 app.use(express.json())
+app.use(cookieParser())
 app.use(express.urlencoded())
+
 
 app.use(cors({
     origin : process.env.FRONTEND_URL,
